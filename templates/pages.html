@@ -1,9 +1,10 @@
-{% extends 'layout.html' %}
+{% extends 'base.html' %}
 {% block content %}
 
-
+{% if user.is_authenticated %}
 <h3>{{ post.title }}</h3>
 <p>{{ post.body }}</p>
-
-
+{% else %}
+<h2>Voçe não é nosso leitor...Ainda!</h2>
+{% endif %}
 {% endblock %}

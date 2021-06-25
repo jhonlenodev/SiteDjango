@@ -21,7 +21,7 @@
   
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Blog Django</a>
+      <a class="navbar-brand" href="/">Blog Django</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -29,11 +29,20 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="/">Home</a>
+          </li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="profile/{{ user.id }}">Perfil</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Login</a>
+            <a class="nav-link" href="{% url 'account_logout' %}">Sair</a>
           </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+            </li>
+            {% endif %}
           <li class="nav-item">
             <a class="nav-link" href="#">Contato</a>
           </li>
@@ -59,21 +68,31 @@
       <!-- Grid container -->
       <div class="container p-4 pb-0">
         <!-- Section: CTA -->
+        {% if user.is_authenticated %}
+        <section class="" >
+          <p class="d-flex justify-content-center align-items-center">
+            <span class="me-3">Obrigado por ser nosso leitor!</span>
+          </p>
+        </section>
+        {% else %}
         <section class="" >
           <p class="d-flex justify-content-center align-items-center">
             <span class="me-3">Seja nosso leitor </span>
-            <button href="/accounts/signup/" type="submit" class="btn btn-outline-light btn-rounded">
+            <a href="{% url 'account_signup' %}">
+            <button type="submit" class="btn btn-outline-light btn-rounded">
               Cadastrar!
             </button>
+            </a>
           </p>
         </section>
+        {% endif %}
         <!-- Section: CTA -->
       </div>
       <!-- Grid container -->
   
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-        © 2020 Copyright:
+        © 2021 Copyright:
         <a class="text-white" href="https://github.com/jhonlenodev">JhonLenoFC</a>
       </div>
       <!-- Copyright -->
