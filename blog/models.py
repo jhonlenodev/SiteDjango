@@ -15,3 +15,10 @@ class Post(models.Model):
         return self.title
     class Meta:
         ordering = ['date_create']
+
+class Perfil(models.Model):
+    name = models.CharField(max_length=150)
+    profission = models.CharField(max_length=200)
+    
+    def __str__(self):
+        return self.name
