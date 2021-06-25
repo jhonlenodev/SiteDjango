@@ -9,6 +9,7 @@ class Post(models.Model):
     body = models.TextField()
     author = models.ForeignKey(User, on_delete=PROTECT)
     date_create = models.DateField(auto_now_add=True)
+    photo = models.ImageField(upload_to='images/')
 
     def __str__(self):
         return self.title
