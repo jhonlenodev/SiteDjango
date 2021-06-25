@@ -3,13 +3,13 @@
 {% block content %}
 
     {% for post in posts %}
-    <a href="post.html">
-        <h2 class="post-title"<b>{{ post.title }}</b></h2>
+    <a href="post/{{ post.id }}/">
+        <h2 class="post-title">{{ post.title }}</h2></a>
         <h5 class="post-subtitle">{{ post.description }}</h5>
-    </a>
+    
     <p class="post-meta">
         Posted by
-        <a href="#!">{{ post.author.first_name }}</a>
+        <a href="post/{{ post.id }}/">{{ post.author.first_name }}</a>
         on {{ post.date_create }}
     </p>
     {% endfor %}
